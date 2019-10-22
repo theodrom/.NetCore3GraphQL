@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!reservations"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="reservations">
+  <thead>
+    <tr>
+      <th>Guest Name</th>
+      <th>Room Number</th>
+      <th>Checkin Date</th>
+      <th>Checkout Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{ reservation.guest.name }}</td>
+      <td>{{ reservation.room.number }}</td>
+      <td>{{ reservation.checkinDate | date: 'dd.MM.yyyy'}}</td>
+      <td>{{ reservation.checkoutDate | date: 'dd.MM.yyyy' }}</td>
+    </tr>
+  </tbody>
+</table>
