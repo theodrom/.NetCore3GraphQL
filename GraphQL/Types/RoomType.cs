@@ -12,9 +12,9 @@ namespace GraphQl_MyHotel_MyProj.GraphQL.Types
         public RoomType()
         {
             Field(x => x.Id);
-            Field(x => x.Name);
-            Field(x => x.Number);
-            Field(x => x.AllowedSmoking);
+            Field(x => x.Name).Description("The name of the room");
+            Field(x => x.Number).Description("The number of the room");
+            Field(x => x.AllowedSmoking).Description("Boolean for the allowance of smoking");
             Field<RoomStatusType>(nameof(Room.Status));
         }
     }

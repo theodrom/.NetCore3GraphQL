@@ -49,8 +49,8 @@ namespace GraphQl_MyHotel_MyProj.GraphQL
                 {
                     var query = reservationRepository.GetQuery();
 
-                    var user = (ClaimsPrincipal)context.UserContext;
-                    var isUserAuthenticated = ((ClaimsIdentity)user.Identity).IsAuthenticated;
+                    //var user = (ClaimsPrincipal)context.UserContext;
+                    //var isUserAuthenticated = ((ClaimsIdentity)user.Identity).IsAuthenticated;
 
                     var reservationId = context.GetArgument<int?>("id");
                     if (reservationId.HasValue)
@@ -61,34 +61,31 @@ namespace GraphQl_MyHotel_MyProj.GraphQL
                             return new List<Reservation>();
                         }
 
-                        return reservationRepository.GetQuery().Where(r => r.Id == reservationId.Value);
+                        return query.Where(r => r.Id == reservationId.Value);
                     }
 
                     var checkinDate = context.GetArgument<DateTime?>("checkinDate");
                     if (checkinDate.HasValue)
                     {
-                        return reservationRepository.GetQuery()
-                            .Where(r => r.CheckinDate.Date == checkinDate.Value.Date);
+                        return query.Where(r => r.CheckinDate.Date == checkinDate.Value.Date);
                     }
 
                     var checkoutDate = context.GetArgument<DateTime?>("checkoutDate");
                     if (checkoutDate.HasValue)
                     {
-                        return reservationRepository.GetQuery()
-                            .Where(r => r.CheckoutDate.Date >= checkoutDate.Value.Date);
+                        return query.Where(r => r.CheckoutDate.Date >= checkoutDate.Value.Date);
                     }
 
                     var allowedSmoking = context.GetArgument<bool?>("roomAllowedSmoking");
                     if (allowedSmoking.HasValue)
                     {
-                        return reservationRepository.GetQuery()
-                            .Where(r => r.Room.AllowedSmoking == allowedSmoking.Value);
+                        return query.Where(r => r.Room.AllowedSmoking == allowedSmoking.Value);
                     }
 
                     var roomStatus = context.GetArgument<RoomStatus?>("roomStatus");
                     if (roomStatus.HasValue)
                     {
-                        return reservationRepository.GetQuery().Where(r => r.Room.Status == roomStatus.Value);
+                        return query.Where(r => r.Room.Status == roomStatus.Value);
                     }
 
                     return query.ToList();

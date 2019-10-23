@@ -12,8 +12,8 @@ namespace GraphQl_MyHotel_MyProj.GraphQL.Types
         public ReservationType()
         {
             Field(x => x.Id);
-            Field(x => x.CheckinDate);
-            Field(x => x.CheckoutDate);
+            Field(x => x.CheckinDate).Description("The checkin date");
+            Field(x => x.CheckoutDate).Description("The checkout date");
             Field<GuestType>(nameof(Reservation.Guest));
             Field<RoomType>(nameof(Reservation.Room));
         }

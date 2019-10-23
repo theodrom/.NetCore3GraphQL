@@ -12,8 +12,8 @@ namespace GraphQl_MyHotel_MyProj.GraphQL.Types
         public GuestType()
         {
             Field(x => x.Id);
-            Field(x => x.Name);
-            Field(x => x.RegisterDate);
+            Field(x => x.Name).Description("The name of the guest");
+            Field(x => x.RegisterDate).Description("The date the registration has been made");
         }
     }
 }
